@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+
 [System.Serializable]
 public class Items : ScriptableObject
 {
+    //Declaration of list of different types of item
     public List<Weapon> weapons;
     public List<Equipment> equipment;
     public List<Consumables> consumables;
 
+    //The enum for the type of Weapon
     public enum WeaponHandling
     {
         ONEHANDED,
@@ -18,6 +21,8 @@ public class Items : ScriptableObject
         OFFHANDED
     }
 
+
+    //Declaration of the structs of the different types of items
     [System.Serializable]
     public struct Weapon
     {
@@ -47,6 +52,7 @@ public class Items : ScriptableObject
 
 }
 
+//Class and function for the creation of the Items List ASSET
 public class CreateItemList
 {
     [MenuItem("Assets/Create/Scriptable Objects/Items List", priority = 60)]

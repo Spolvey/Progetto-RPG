@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
     public bool canPlayerMove = true;
 
     //Connected UI gameObjects declaration
-    public TextMeshProUGUI playerHPText;
+    public Image playerHealthBar;
     //Connected gameObjects declaration
     public PlayerInput playerInputComponent;
     public CharacterController playerController;
@@ -53,15 +53,16 @@ public class PlayerScript : MonoBehaviour
         switch (playerHP)
         {
             default:
-                playerHPText.text = "Health Points: " + playerHP;
+                playerHealthBar.fillAmount = playerHP/maxPlayerHP;
                 break;
 
             case var _ when playerHP > maxPlayerHP:
                 playerHP = maxPlayerHP;
-                playerHPText.text = "Health Points: " + playerHP;
+                playerHealthBar.fillAmount = playerHP / maxPlayerHP;
                 break;
 
             case var _ when playerHP <= 0:
+                playerHealthBar.fillAmount = playerHP / maxPlayerHP;
                 KillPlayer();
                 break;
         }
@@ -104,7 +105,6 @@ public class PlayerScript : MonoBehaviour
 
     public void KillPlayer()
     {
-        playerHPText.text = "YOU DIED";
         canPlayerMove = false;
         playerVelocity.x = 0; playerVelocity.z = 0;
     }
