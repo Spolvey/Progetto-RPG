@@ -50,11 +50,7 @@ public class Items : ScriptableObject
         public float weight;
     }
 
-}
-
-//Class and function for the creation of the Items List ASSET
-public class CreateItemList
-{
+    //Class and function for the creation of the Items List ASSET
     [MenuItem("Assets/Create/Scriptable Objects/Items List", priority = 60)]
     public static Items Create()
     {
@@ -64,3 +60,6 @@ public class CreateItemList
         return asset;
     }
 }
+
+
+
