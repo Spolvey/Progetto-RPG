@@ -51,6 +51,7 @@ public class PlayerScript : MonoBehaviour
         //Rounding the player's HP and writing them on the Text Object
         playerHP = Mathf.Round(playerHP);
 
+        //Update HealthBar and "clamp" hp to max or KillPlayer() at 0 hp
         switch (playerHP)
         {
             default:
@@ -68,6 +69,11 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
 
+        playerHealthBar.fillAmount = playerHP / maxPlayerHP;
+        if (playerHP > maxPlayerHP)
+            playerHP = maxPlayerHP;
+        else if (playerHP <= 0f)
+            KillPlayer();
 
         if (playerController.isGrounded) 
         {
