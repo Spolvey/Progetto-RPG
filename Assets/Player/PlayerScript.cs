@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public float playerSpeed;
     public float gravity;
     public float jumpForce;
+
     
     //Status variables declaration
     public float playerHP = 100f;
@@ -50,6 +51,7 @@ public class PlayerScript : MonoBehaviour
         //Rounding the player's HP and writing them on the Text Object
         playerHP = Mathf.Round(playerHP);
 
+        //Update HealthBar and "clamp" hp to max or KillPlayer() at 0 hp
         switch (playerHP)
         {
             default:
@@ -67,21 +69,30 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
 
-        if (playerController.isGrounded && canPlayerMove)
-        {
-            //Modify velocity according to input
-            playerVelocity = new Vector3(
-                playerInputComponent.actions.FindAction("Movement").ReadValue<Vector2>().x * playerSpeed,
-                0f,
-                playerInputComponent.actions.FindAction("Movement").ReadValue<Vector2>().y * playerSpeed);
-            
-            playerVelocity = transform.TransformDirection(playerVelocity);
+        playerHealthBar.fillAmount = playerHP / maxPlayerHP;
+        if (playerHP > maxPlayerHP)
+            playerHP = maxPlayerHP;
+        else if (playerHP <= 0f)
+            KillPlayer();
 
+        if (playerController.isGrounded) 
+        {
             //Make the player jump if the action is called
             if (playerInputComponent.actions.FindAction("Jump").IsPressed())
             {
                 playerVelocity.y += Mathf.Sqrt(jumpForce * -3.0f * gravity);
             }
+        }
+
+        if (canPlayerMove)
+        {
+            //Modify velocity according to input
+            playerVelocity = new Vector3(
+                playerInputComponent.actions.FindAction("Movement").ReadValue<Vector2>().x * playerSpeed,
+                playerVelocity.y,
+                playerInputComponent.actions.FindAction("Movement").ReadValue<Vector2>().y * playerSpeed);
+            
+            playerVelocity = transform.TransformDirection(playerVelocity);
 
             //Rotate character towards where camera is looking when movement input is given
             if (playerVelocity != Vector3.zero)

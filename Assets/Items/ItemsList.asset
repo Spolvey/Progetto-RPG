@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de24ee5015126c545a3cee77b682bc84, type: 3}
   m_Name: ItemsList
   m_EditorClassIdentifier: 
-  weapons: []
-  equipment: []
-  consumables: []
+  weapons:
+  - name: Test Weapon
+    icon: {fileID: 2800000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+    handling: 0
+    damage: 1
+    range: 1
+    weight: 1
+  equipment:
+  - name: Test Equipment
+    icon: {fileID: 2800000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+    weight: 0
+  consumables:
+  - name: Test Equipment
+    icon: {fileID: 0}
+    weight: 0
