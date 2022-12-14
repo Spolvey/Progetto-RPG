@@ -20,8 +20,7 @@ public class Items : ScriptableObject
         SPEARHEADED,
         OFFHANDED
     }
-
-
+    
     //Declaration of the structs of the different types of items
     [System.Serializable]
     public struct Weapon
@@ -60,6 +59,5 @@ public class Items : ScriptableObject
         return asset;
     }
 }
-
 
 
