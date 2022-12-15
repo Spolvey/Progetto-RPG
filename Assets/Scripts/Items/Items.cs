@@ -54,7 +54,7 @@ public class Items : ScriptableObject
     public static Items Create()
     {
         Items asset = Items.CreateInstance<Items>();
-        AssetDatabase.CreateAsset(asset, "Assets/Items/ItemsList.asset");
+        AssetDatabase.CreateAsset(asset, "Assets/Scriptable Objects and Data/Items");
         AssetDatabase.SaveAssets();
         return asset;
     }
